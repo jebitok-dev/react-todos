@@ -4,9 +4,29 @@ class App extends React.Component {
         this.state = {
             count = 0
         }
-        addOne() {
-            this.setState()
+        addOne =() => {
+            this.setState((prevState) => {
+                return {
+                    count: prevState.count + 1
+                }
+            })
         }
+        minusOne = () => {
+            this.setState((prevState) => {
+                return {
+                    count: prevState.count -1
+                }
+            })
+        }
+
+        reset = () => {
+            this.setState(() => {
+                return {
+                    count: 0
+                }
+            })
+        }
+
     }
     render () {
     return (
