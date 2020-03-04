@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
+import AddNoteForm from './components/AddNoteForm'
 import './App.css';
 
 const notesReducer = (state, action) => {
@@ -19,21 +20,7 @@ const notesReducer = (state, action) => {
 
 const App = () => {
   const [notes, dispatch] = useReducer(notesReducer, []);
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-
-
-  const addNote = (e) => {
-    e.preventDefault();
-    dispatch({
-type: 'ADD_NOTE',
-       title,
-       body
-    })
-    setTitle('');
-    setBody('');
-  }
-
+  
   const removeNote = (title) => {
     dispatch({
       type: 'REMOVE_NOTE',
@@ -64,12 +51,7 @@ type: 'ADD_NOTE',
             </div>
         )
       })}
-      <p>Add note</p>
-      <form onSubmit={addNote}>
-        <input value={title} onChange={(e) => setTitle(e.target.value)}/>
-        <textarea value={body} onChange={(e) => setBody(e.target.value)}></textarea>
-        <button>Add Note</button>
-      </form>
+      <AddNoteForm dispatch={dispatch}/>
     </div>
   )
 }
